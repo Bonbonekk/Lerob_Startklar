@@ -6,6 +6,7 @@
 	<meta name="theme-color" content="#f4f3ed">
 	<meta name="description" content="Persönliche Technikhilfe in Nürnberg: Leon & Robert helfen dir geduldig bei Smartphone, Laptop und PC. Direkt bei dir vor Ort.">
 	<title>Lerob Startklar – Persönliche Technikhilfe in Nürnberg</title>
+	<link rel="icon" type="image/png" href="favicon.png">
 	<style>
 		:root {
 			color-scheme: light;
@@ -43,7 +44,7 @@
 		.topbar { position: sticky; z-index: 10; top: 0; border-bottom: 1px solid rgb(24 37 31 / 9%); background: rgb(244 243 237 / 95%); backdrop-filter: blur(12px); }
 		.nav { display: flex; min-height: 76px; align-items: center; justify-content: space-between; gap: 28px; }
 		.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
-		.brand-mark { display: grid; width: 38px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--lime); color: var(--green-dark); font-family: var(--serif); font-size: 1.22rem; font-weight: 700; }
+		.brand-mark { display: block; width: 56px; aspect-ratio: 1; object-fit: contain; mix-blend-mode: multiply; }
 		.brand-name { display: grid; font-size: 1rem; font-weight: 800; line-height: 1.1; }
 		.brand-name small { margin-top: 4px; color: var(--muted); font-size: .68rem; font-weight: 550; }
 		.nav-links { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 34px); }
@@ -209,7 +210,7 @@
 	<header class="topbar">
 		<nav class="nav wrap" aria-label="Hauptnavigation">
 			<a class="brand" href="#start" aria-label="Lerob Startklar – zur Startseite">
-				<span class="brand-mark" aria-hidden="true">L</span>
+				<img class="brand-mark" src="favicon.png" alt="">
 				<span class="brand-name">Lerob Startklar<small>Technikhilfe Nürnberg</small></span>
 			</a>
 			<div class="nav-links">

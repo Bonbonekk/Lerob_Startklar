@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f4f3ed">
+	<meta name="description" content="Persönliche Technikhilfe in Nürnberg: Leon & Robert helfen dir geduldig bei Smartphone, Laptop und PC. Direkt bei dir vor Ort.">
+	<title>Lerob Startklar – Persönliche Technikhilfe in Nürnberg</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--paper: #f4f3ed;
+			--ink: #18251f;
+			--muted: #5f6b63;
+			--green: #244b3d;
+			--green-dark: #18382f;
+			--lime: #d5ef81;
+			--coral: #ed795b;
+			--line: #d8ddd3;
+			--white: #fffefa;
+			--serif: Georgia, "Times New Roman", serif;
+			--sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+		}
+
+		*, *::before, *::after { box-sizing: border-box; }
+		html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+		body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
+		a { color: inherit; }
+		img { display: block; max-width: 100%; }
+		button, a { -webkit-tap-highlight-color: transparent; }
+		:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+		.wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+		.eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 16px; color: var(--green); font-size: .76rem; font-weight: 750; letter-spacing: 0; text-transform: uppercase; }
+		.eyebrow::before { width: 24px; height: 2px; background: var(--coral); content: ""; }
+		h1, h2, h3, p { margin-top: 0; }
+		h1, h2, h3 { line-height: 1.12; }
+		h1 { max-width: 720px; margin-bottom: 22px; font-family: var(--serif); font-size: clamp(3.1rem, 8vw, 6rem); font-weight: 500; letter-spacing: 0; }
+		h1 em { color: var(--green); font-weight: 500; }
+		h2 { margin-bottom: 18px; font-family: var(--serif); font-size: clamp(2.35rem, 5vw, 4rem); font-weight: 500; letter-spacing: 0; }
+		h3 { font-size: 1.2rem; letter-spacing: 0; }
+		.section-intro { max-width: 610px; color: var(--muted); font-size: 1.05rem; }
+
+		.topbar { position: sticky; z-index: 10; top: 0; border-bottom: 1px solid rgb(24 37 31 / 9%); background: rgb(244 243 237 / 95%); backdrop-filter: blur(12px); }
+		.nav { display: flex; min-height: 76px; align-items: center; justify-content: space-between; gap: 28px; }
+		.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+		.brand-mark { display: grid; width: 38px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--lime); color: var(--green-dark); font-family: var(--serif); font-size: 1.22rem; font-weight: 700; }
+		.brand-name { display: grid; font-size: 1rem; font-weight: 800; line-height: 1.1; }
+		.brand-name small { margin-top: 4px; color: var(--muted); font-size: .68rem; font-weight: 550; }
+		.nav-links { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 34px); }
+		.nav-links a { color: var(--ink); font-size: .88rem; font-weight: 650; text-decoration: none; }
+		.nav-links a:hover { color: var(--green); }
+		.nav-cta { padding: 10px 16px; border-radius: 999px; background: var(--green); color: white !important; }
+		.mobile-nav { display: none; }
+
+		.hero { position: relative; overflow: hidden; padding: clamp(58px, 9vw, 112px) 0 76px; }
+		.hero::after { position: absolute; z-index: -1; top: 35px; right: -140px; width: 440px; height: 440px; border: 1px solid #dfe3d5; border-radius: 50%; box-shadow: 0 0 0 38px var(--paper), 0 0 0 39px #e4e6db, 0 0 0 78px var(--paper), 0 0 0 79px #e9e9df; content: ""; }
+		.hero-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr); align-items: center; gap: clamp(36px, 7vw, 90px); }
+		.hero-copy { position: relative; z-index: 1; }
+		.hero-copy > p:not(.eyebrow) { max-width: 570px; margin-bottom: 28px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.2rem); }
+		.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+		.button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 10px; padding: 12px 19px; border: 1px solid transparent; border-radius: 999px; font-size: .92rem; font-weight: 750; text-decoration: none; transition: transform .2s ease, background-color .2s ease; }
+		.button:hover { transform: translateY(-2px); }
+		.button-primary { background: var(--green); color: white; }
+		.button-primary:hover { background: var(--green-dark); }
+		.button-light { border-color: var(--line); background: var(--white); color: var(--ink); }
+		.button-light:hover { background: var(--lime); }
+		.arrow { font-size: 1.1em; }
+		.hero-visual { position: relative; min-height: 440px; }
+		.hero-photo { position: absolute; inset: 0 34px 28px 0; overflow: hidden; border-radius: 48% 48% 8px 8px; background: #bdc5b3; }
+		.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 54% center; }
+		.photo-note { position: absolute; right: 0; bottom: 3px; display: flex; width: 184px; min-height: 108px; flex-direction: column; justify-content: center; padding: 17px; background: var(--lime); color: var(--green-dark); transform: rotate(3deg); }
+		.photo-note strong { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; }
+		.photo-note span { font-size: .79rem; }
+		.hero-stamp { position: absolute; top: 24px; right: 0; display: grid; width: 92px; aspect-ratio: 1; place-content: center; border-radius: 50%; background: var(--coral); color: white; text-align: center; transform: rotate(9deg); }
+		.hero-stamp strong { font-size: .8rem; line-height: 1.25; }
+		.benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 56px; }
+		.benefit { display: flex; align-items: center; gap: 12px; padding-top: 17px; border-top: 1px solid var(--line); font-size: .91rem; font-weight: 700; }
+		.benefit-mark { display: grid; width: 32px; aspect-ratio: 1; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #e4eadc; color: var(--green); font-size: 1rem; }
+
+		.services { padding: 100px 0 106px; background: var(--white); }
+		.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 46px; }
+		.section-heading h2 { max-width: 600px; margin-bottom: 0; }
+		.section-heading .section-intro { max-width: 360px; margin-bottom: 2px; }
+		.service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+		.service { min-height: 270px; padding: 25px 22px; border: 1px solid var(--line); border-radius: 7px; background: var(--white); }
+		.service-icon { display: grid; width: 48px; aspect-ratio: 1; margin-bottom: 33px; place-items: center; border-radius: 50%; background: var(--lime); color: var(--green-dark); font-size: 1.16rem; font-weight: 800; }
+		.service:nth-child(2) .service-icon { background: #f9d7c8; }
+		.service:nth-child(3) .service-icon { background: #dfe7d7; }
+		.service:nth-child(4) .service-icon { background: #e9e5c9; }
+		.service h3 { margin-bottom: 12px; }
+		.service p { margin-bottom: 0; color: var(--muted); font-size: .91rem; }
+
+		.about { padding: 106px 0; }
+		.about-grid { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: clamp(40px, 8vw, 110px); }
+		.about-visual { position: relative; min-height: 460px; padding: 24px 0 0 24px; }
+		.about-photo { width: 100%; height: 420px; overflow: hidden; border-radius: 7px; background: #d2d4c4; }
+		.about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+		.about-tag { position: absolute; right: -22px; bottom: 0; max-width: 230px; padding: 19px 22px; background: var(--green); color: white; font-family: var(--serif); font-size: 1.35rem; line-height: 1.25; }
+		.about-copy > p:not(.eyebrow) { color: var(--muted); }
+		.promise-list { display: grid; gap: 18px; margin: 28px 0 0; padding: 0; list-style: none; }
+		.promise-list li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; }
+		.promise-list strong { display: block; margin-bottom: 2px; color: var(--ink); }
+		.promise-list span:last-child { color: var(--muted); font-size: .93rem; }
+		.check { color: var(--green); font-size: 1.1rem; font-weight: 900; }
+
+		.area { padding: 78px 0; background: var(--green); color: white; }
+		.area-grid { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 64px; }
+		.area .eyebrow { color: var(--lime); }
+		.area h2 { max-width: 430px; margin-bottom: 16px; }
+		.area-copy { max-width: 480px; margin-bottom: 0; color: #d6e0d8; }
+		.districts { display: flex; flex-wrap: wrap; gap: 10px; }
+		.districts span { padding: 9px 14px; border: 1px solid rgb(255 255 255 / 27%); border-radius: 999px; color: white; font-size: .89rem; }
+		.districts span:last-child { border-color: var(--lime); background: var(--lime); color: var(--green-dark); font-weight: 750; }
+
+		.contact { padding: 104px 0 110px; }
+		.contact-panel { display: grid; grid-template-columns: 1fr .9fr; overflow: hidden; border-radius: 8px; background: #e9ecdf; }
+		.contact-copy { padding: clamp(28px, 6vw, 66px); }
+		.contact-copy h2 { max-width: 520px; }
+		.contact-copy > p:not(.eyebrow) { max-width: 500px; color: var(--muted); }
+		.contact-methods { display: grid; align-content: center; gap: 12px; padding: clamp(26px, 5vw, 52px); background: var(--lime); }
+		.contact-method { display: grid; gap: 7px; padding: 18px 0; border-bottom: 1px solid rgb(24 56 47 / 22%); }
+		.contact-method:last-child { border-bottom: 0; }
+		.contact-method small { color: var(--green); font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+		.contact-method a { width: fit-content; font-size: 1.05rem; font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 4px; overflow-wrap: anywhere; }
+		.template { margin: 20px 0 0; padding-left: 18px; color: var(--muted); font-size: .92rem; }
+		.template li { margin: 5px 0; }
+		.contact-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+		.contact-actions .button-light { background: transparent; border-color: #b8c1b2; }
+		.support { padding: 0 0 96px; }
+		.support-panel { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: clamp(28px, 5vw, 54px); border-radius: 8px; background: #f9d7c8; }
+		.support-panel h2 { margin-bottom: 12px; font-size: clamp(2rem, 4vw, 3rem); }
+		.support-panel p:not(.eyebrow) { max-width: 620px; margin-bottom: 0; color: #4c554f; }
+		.support-panel .eyebrow { color: var(--green-dark); }
+		.paypal-placeholder { flex: 0 0 auto; }
+		.paypal-placeholder:disabled { cursor: not-allowed; opacity: .75; transform: none; }
+		.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+
+		.footer { padding: 48px 0 24px; background: var(--ink); color: white; }
+		.footer-top { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; padding-bottom: 38px; }
+		.footer .brand { color: white; }
+		.footer .brand-name small { color: #bec8c0; }
+		.footer-blurb { max-width: 300px; margin: 16px 0 0; color: #bec8c0; font-size: .9rem; }
+		.footer h3 { margin-bottom: 14px; font-family: var(--sans); font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; }
+		.footer-links { display: grid; gap: 8px; }
+		.footer a { color: #e5e9e4; font-size: .9rem; text-decoration: none; }
+		.footer a:hover { color: var(--lime); text-decoration: underline; }
+		.footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 20px; border-top: 1px solid rgb(255 255 255 / 18%); color: #bec8c0; font-size: .8rem; }
+		.legal { padding: 26px 0; background: #111b17; color: #bec8c0; }
+		.legal details { border-top: 1px solid rgb(255 255 255 / 15%); padding: 12px 0; }
+		.legal summary { color: white; cursor: pointer; font-size: .88rem; font-weight: 700; }
+		.legal p { max-width: 800px; margin: 10px 0 0; font-size: .82rem; }
+
+		@media (max-width: 850px) {
+			.nav-links { gap: 15px; }
+			.nav-links a { font-size: .8rem; }
+			.hero-grid { grid-template-columns: 1fr .8fr; gap: 28px; }
+			.hero-visual { min-height: 390px; }
+			.service-grid { grid-template-columns: repeat(2, 1fr); }
+			.section-heading { align-items: start; flex-direction: column; }
+			.section-heading .section-intro { max-width: 560px; }
+			.area-grid { gap: 32px; }
+		}
+		@media (max-width: 760px) {
+			.nav-links { display: none; }
+			.mobile-nav { display: block; }
+		}
+		@media (max-width: 620px) {
+			.wrap { width: min(100% - 32px, 480px); }
+			.nav { min-height: 68px; }
+			.nav-links { display: none; }
+			.mobile-nav { position: relative; display: block; }
+			.mobile-nav summary { display: grid; width: 42px; aspect-ratio: 1; place-items: center; border: 1px solid var(--line); border-radius: 50%; cursor: pointer; font-size: 1.3rem; list-style: none; }
+			.mobile-menu { position: absolute; top: 52px; right: 0; display: grid; width: 210px; gap: 2px; padding: 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--white); box-shadow: 0 12px 30px rgb(24 37 31 / 12%); }
+			.mobile-menu a { padding: 10px 12px; border-radius: 4px; font-size: .9rem; font-weight: 700; text-decoration: none; }
+			.mobile-menu a:hover { background: #e9ecdf; }
+			.hero { padding: 58px 0 58px; }
+			.hero-grid { grid-template-columns: 1fr; gap: 35px; }
+			h1 { max-width: 520px; font-size: clamp(3rem, 15vw, 4.5rem); }
+			.hero-visual { width: min(100%, 390px); min-height: 390px; justify-self: center; }
+			.hero-photo { inset: 0 30px 25px 0; }
+			.benefits { grid-template-columns: 1fr; gap: 0; margin-top: 38px; }
+			.benefit { padding: 12px 0; }
+			.services, .about, .contact { padding: 74px 0; }
+			.service-grid { grid-template-columns: 1fr; }
+			.service { min-height: 0; padding: 22px; }
+			.service-icon { margin-bottom: 22px; }
+			.about-grid { grid-template-columns: 1fr; gap: 40px; }
+			.about-visual { min-height: 350px; padding-left: 12px; }
+			.about-photo { height: 330px; }
+			.about-tag { right: -5px; max-width: 190px; font-size: 1.18rem; }
+			.area { padding: 72px 0; }
+			.area-grid { grid-template-columns: 1fr; gap: 28px; }
+			.districts { gap: 8px; }
+			.districts span { padding: 8px 12px; font-size: .82rem; }
+			.contact-panel { grid-template-columns: 1fr; }
+			.contact-copy { padding: 32px 24px; }
+			.contact-methods { padding: 24px; }
+			.support-panel { align-items: flex-start; flex-direction: column; }
+			.footer-top { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+			.footer-top > :first-child { grid-column: 1 / -1; }
+			.footer-bottom { align-items: start; flex-direction: column; gap: 8px; }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+		}
+	</style>
+</head>
+<body>
+	<header class="topbar">
+		<nav class="nav wrap" aria-label="Hauptnavigation">
+			<a class="brand" href="#start" aria-label="Lerob Startklar – zur Startseite">
+				<span class="brand-mark" aria-hidden="true">L</span>
+				<span class="brand-name">Lerob Startklar<small>Technikhilfe Nürnberg</small></span>
+			</a>
+			<div class="nav-links">
+				<a href="#services">Leistungen</a>
+				<a href="#about">Über uns</a>
+				<a href="#nuernberg">Einsatzgebiet</a>
+				<a href="#unterstuetze">Unterstütze uns</a>
+				<a class="nav-cta" href="#kontakt">Kontakt <span aria-hidden="true">↗</span></a>
+			</div>
+			<details class="mobile-nav">
+				<summary aria-label="Menü öffnen">☰</summary>
+				<div class="mobile-menu">
+					<a href="#services">Leistungen</a>
+					<a href="#about">Über uns</a>
+					<a href="#nuernberg">Einsatzgebiet</a>
+					<a href="#unterstuetze">Unterstütze uns</a>
+					<a href="#kontakt">Kontakt</a>
+				</div>
+			</details>
+		</nav>
+	</header>
+
+	<main>
+		<section class="hero" id="start" aria-labelledby="hero-title">
+			<div class="wrap">
+				<div class="hero-grid">
+					<div class="hero-copy">
+						<p class="eyebrow">Technikhilfe, die zu dir kommt</p>
+						<h1 id="hero-title">Persönliche Technikhilfe <em>in Nürnberg</em></h1>
+						<p>Leon &amp; Robert helfen dir direkt vor Ort bei Smartphone, Laptop und PC. Ganz in Ruhe, verständlich erklärt und ohne Fachchinesisch.</p>
+						<div class="hero-actions">
+							<a class="button button-primary" href="mailto:lerob.startklar@gmail.com?subject=Technikhilfe%20anfragen">E-Mail schreiben <span class="arrow" aria-hidden="true">↗</span></a>
+							<a class="button button-light" href="https://www.instagram.com/lerob_startklar/" target="_blank" rel="noopener noreferrer">Instagram @lerob_startklar <span class="arrow" aria-hidden="true">↗</span></a>
+						</div>
+					</div>
+					<div class="hero-visual" aria-label="Persönliche Unterstützung bei digitalen Fragen">
+						<div class="hero-photo">
+							<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&amp;fit=crop&amp;w=1100&amp;q=82" alt="Zwei Menschen schauen gemeinsam auf einen Laptop" fetchpriority="high">
+						</div>
+						<div class="hero-stamp" aria-hidden="true"><strong>Dein Tempo.<br>Dein Zuhause.</strong></div>
+						<div class="photo-note"><strong>Wir sind Leon &amp; Robert.</strong><span>Und wir erklären's ganz einfach.</span></div>
+					</div>
+				</div>
+				<div class="benefits" aria-label="Deine Vorteile">
+					<div class="benefit"><span class="benefit-mark" aria-hidden="true">⌂</span>Vor Ort in Nürnberg &amp; Region</div>
+					<div class="benefit"><span class="benefit-mark" aria-hidden="true">♡</span>Geduldig &amp; verständlich</div>
+					<div class="benefit"><span class="benefit-mark" aria-hidden="true">✓</span>Faire Absprachen</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="services" id="services" aria-labelledby="services-title">
+			<div class="wrap">
+				<div class="section-heading">
+					<div><p class="eyebrow">Wobei wir helfen</p><h2 id="services-title">Technik, die wieder<br>einfach läuft.</h2></div>
+					<p class="section-intro">Ob neues Gerät oder eine kleine Frage: Wir nehmen uns Zeit und gehen alles Schritt für Schritt mit dir durch.</p>
+				</div>
+				<div class="service-grid">
+					<article class="service">
+						<span class="service-icon" aria-hidden="true">01</span>
+						<h3>Neues Smartphone einrichten</h3>
+						<p>WhatsApp, Fotos und Kontakte übertragen, Apple ID oder Google-Konto einrichten und deine Apps startklar machen.</p>
+					</article>
+					<article class="service">
+						<span class="service-icon" aria-hidden="true">02</span>
+						<h3>Laptop und PC einrichten</h3>
+						<p>Windows 11 oder macOS einrichten, Drucker, Scanner und WLAN verbinden, Antivirenschutz prüfen und die Leistung optimieren.</p>
+					</article>
+					<article class="service">
+						<span class="service-icon" aria-hidden="true">03</span>
+						<h3>Fotos und Daten sichern</h3>
+						<p>Backups erstellen, Daten in eine Cloud oder auf eine Festplatte übertragen und Ordnung in Passwörter bringen.</p>
+					</article>
+					<article class="service">
+						<span class="service-icon" aria-hidden="true">04</span>
+						<h3>Hilfe bei Fehlern und Fragen</h3>
+						<p>Speicherplatz schaffen, E-Mail-Konten wieder zum Laufen bringen und deine Technikfragen in Ruhe klären.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="about" id="about" aria-labelledby="about-title">
+			<div class="wrap about-grid">
+				<div class="about-visual">
+					<div class="about-photo">
+						<img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Ein Team arbeitet zusammen an einem Tisch" loading="lazy">
+					</div>
+					<div class="about-tag">Gute Hilfe beginnt mit Zuhören.</div>
+				</div>
+				<div class="about-copy">
+					<p class="eyebrow">Über uns</p>
+					<h2 id="about-title">Technik erklären.<br>Ohne großes Tamtam.</h2>
+					<p>Wir sind Leon &amp; Robert aus der Region Nürnberg. Unser Ziel: Du fühlst dich mit deiner Technik sicher, statt dich allein durch Menüs und Fehlermeldungen zu kämpfen.</p>
+					<ul class="promise-list">
+						<li><span class="check" aria-hidden="true">✓</span><span><strong>Geduldig und klar</strong>Wir erklären verständlich und in deinem Tempo, ohne Fachchinesisch.</span></li>
+						<li><span class="check" aria-hidden="true">✓</span><span><strong>Diskret mit deinen Daten</strong>Deine Privatsphäre ist uns wichtig. Wir gehen sorgfältig und vertraulich mit persönlichen Daten um.</span></li>
+						<li><span class="check" aria-hidden="true">✓</span><span><strong>Direkt bei dir zu Hause</strong>Du musst nichts abstöpseln und dich nicht durch volle Läden kämpfen. Wir kommen zu dir.</span></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="area" id="nuernberg" aria-labelledby="area-title">
+			<div class="wrap area-grid">
+				<div>
+					<p class="eyebrow">Nah dran statt weit weg</p>
+					<h2 id="area-title">Nürnberg und Umgebung</h2>
+					<p class="area-copy">Wir sind in Nürnberg und der Region für dich unterwegs. Schreib uns, dann stimmen wir einen passenden Termin bei dir vor Ort ab.</p>
+				</div>
+				<div class="districts" aria-label="Unser Einsatzgebiet">
+					<span>Nürnberg Mitte</span><span>Altstadt</span><span>St. Johannis</span><span>Gostenhof</span><span>Südstadt</span><span>Mögeldorf</span><span>Erlenstegen</span><span>Langwasser</span><span>Nordstadt</span><span>Fürth</span><span>Erlangen</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="support" id="unterstuetze" aria-labelledby="support-title">
+			<div class="wrap support-panel">
+				<div>
+					<p class="eyebrow">Gemeinsam möglich machen</p>
+					<h2 id="support-title">Unterstütze uns</h2>
+					<p>Über eine kleine Spende würden wir uns freuen. Damit unterstützt du unser Projekt und hilfst uns, die persönliche Technikhilfe weiterzuführen.</p>
+				</div>
+				<button class="button button-primary paypal-placeholder" type="button" disabled aria-describedby="paypal-note">PayPal-Link folgt</button>
+				<span id="paypal-note" class="visually-hidden">Der PayPal-Link wird ergänzt, sobald er verfügbar ist.</span>
+			</div>
+		</section>
+
+		<section class="contact" id="kontakt" aria-labelledby="contact-title">
+			<div class="wrap contact-panel">
+				<div class="contact-copy">
+					<p class="eyebrow">Lass uns sprechen</p>
+					<h2 id="contact-title">Was macht deine Technik gerade?</h2>
+					<p>Schreib uns kurz, worum es geht. Wir melden uns zurück und besprechen gemeinsam die nächsten Schritte.</p>
+					<ul class="template">
+						<li>Welches Gerät hast du?</li>
+						<li>Wobei brauchst du Unterstützung?</li>
+						<li>Sag uns, wo du wohnst, damit wir zu dir kommen können.</li>
+					</ul>
+					<div class="contact-actions">
+						<a class="button button-primary" href="mailto:lerob.startklar@gmail.com?subject=Technikhilfe%20anfragen&amp;body=Hallo%20Leon%20und%20Robert%2C%0A%0AIch%20habe%20ein%20%5BGer%C3%A4t%5D%20und%20brauche%20Hilfe%20bei%20%5BAnliegen%5D.%0AIch%20wohne%20in%20%5BStadtteil%5D.%0A%0AViele%20Gr%C3%BC%C3%9Fe">E-Mail vorbereiten <span class="arrow" aria-hidden="true">↗</span></a>
+						<a class="button button-light" href="https://www.instagram.com/lerob_startklar/" target="_blank" rel="noopener noreferrer">Instagram DM <span class="arrow" aria-hidden="true">↗</span></a>
+					</div>
+				</div>
+				<div class="contact-methods">
+					<div class="contact-method"><small>Schreib uns eine E-Mail</small><a href="mailto:lerob.startklar@gmail.com">lerob.startklar@gmail.com</a></div>
+					<div class="contact-method"><small>Oder schick eine Nachricht</small><a href="https://www.instagram.com/lerob_startklar/" target="_blank" rel="noopener noreferrer">@lerob_startklar ↗</a></div>
+					<div class="contact-method"><small>Persönlich für dich da</small><span>Leon &amp; Robert · Nürnberg und Region</span></div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<div class="wrap">
+			<div class="footer-top">
+				<div>
+					<a class="brand" href="#start"><span class="brand-mark" aria-hidden="true">L</span><span class="brand-name">Lerob Startklar<small>Technikhilfe Nürnberg</small></span></a>
+					<p class="footer-blurb">Persönliche Technikhilfe. Verständlich erklärt und direkt bei dir vor Ort.</p>
+				</div>
+				<div><h3>Navigation</h3><div class="footer-links"><a href="#services">Leistungen</a><a href="#about">Über uns</a><a href="#nuernberg">Nürnberg und Umgebung</a><a href="#unterstuetze">Unterstütze uns</a><a href="#kontakt">Kontakt</a></div></div>
+				<div><h3>Kontakt</h3><div class="footer-links"><a href="mailto:lerob.startklar@gmail.com">lerob.startklar@gmail.com</a><a href="https://www.instagram.com/lerob_startklar/" target="_blank" rel="noopener noreferrer">Instagram @lerob_startklar</a><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a></div></div>
+			</div>
+			<div class="footer-bottom"><span>© <span id="year">2026</span> Lerob Startklar · Leon &amp; Robert</span><a href="#start">Zurück nach oben ↑</a></div>
+		</div>
+	</footer>
+	<div class="legal">
+		<div class="wrap">
+			<details id="impressum">
+				<summary>Impressum</summary>
+				<p>Angaben nach § 5 DDG: Lerob Startklar, Leon &amp; Robert. Für ein vollständiges Impressum fehlen noch die ladungsfähige Anschrift sowie gegebenenfalls die Rechtsform und vertretungsberechtigte Person. Bitte diese Angaben vor Veröffentlichung ergänzen.</p>
+			</details>
+			<details id="datenschutz">
+				<summary>Datenschutzhinweise</summary>
+				<p>Diese Seite verwendet keine Analyse- oder Marketing-Cookies. Bei Kontaktaufnahme per E-Mail oder Instagram werden Daten durch den jeweiligen Anbieter verarbeitet. Für vollständige Datenschutzhinweise müssen noch Angaben zum Hosting, zur verantwortlichen Stelle und zu den konkreten Abläufen ergänzt werden.</p>
+			</details>
+		</div>
+	</div>
+	<script>
+		document.getElementById('year').textContent = new Date().getFullYear();
+		document.querySelectorAll('.mobile-menu a').forEach((link) => {
+			link.addEventListener('click', () => link.closest('details').removeAttribute('open'));
+		});
+	</script>
+</body>
+</html>

@@ -39,6 +39,25 @@ if (!reduceMotion && 'animate' in HTMLElement.prototype) {
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
+const mobileNav = document.querySelector('.mobile-nav');
+const closeMobileNav = () => mobileNav?.removeAttribute('open');
+
 document.querySelectorAll('.mobile-menu a').forEach((link) => {
-	link.addEventListener('click', () => link.closest('details').removeAttribute('open'));
+	link.addEventListener('click', closeMobileNav);
 });
+
+document.addEventListener('click', (event) => {
+	if (!(event.target instanceof Element)) return;
+	if (!mobileNav || !mobileNav.hasAttribute('open')) return;
+
+	const clickedInsideMobileNav = event.target.closest('.mobile-nav');
+	if (!clickedInsideMobileNav) {
+		closeMobileNav();
+	}
+}, true);
+
+window.addEventListener('scroll', () => {
+	if (mobileNav && mobileNav.hasAttribute('open')) {
+		closeMobileNav();
+	}
+}, { passive: true });

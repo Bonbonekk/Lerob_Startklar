@@ -260,8 +260,7 @@ a:active, button:active, summary:active { scale: .97; }
 @media (max-width: 560px) {
 	.wrap { width: min(calc(100% - 32px), 480px); }
 	.nav { min-height: 68px; }
-	.nav { position: relative; }
-	.nav > .brand { position: absolute; left: 50%; transform: translateX(-50%); }
+	.nav > .brand { position: static; transform: none; }
 	.brand-mark { width: 42px; }
 	.brand-name { white-space: nowrap; }
 	.mobile-nav { margin-left: auto; }
@@ -311,7 +310,7 @@ a:active, button:active, summary:active { scale: .97; }
 	.footer-legal { grid-column: 1 / -1; }
 	.footer-bottom { align-items: flex-start; flex-direction: column; gap: 8px; }
 	.legal-page { padding-top: 48px; padding-bottom: 64px; }
-	.legal-page h1 { font-size: 2.6rem; }
+	.legal-page h1 { font-size: 2rem; }
 	.legal-page h2 { font-size: 1.28rem; }
 }
 @media (max-width: 360px) {
@@ -319,6 +318,7 @@ a:active, button:active, summary:active { scale: .97; }
 	.brand-mark { width: 38px; }
 	.brand-name { font-size: .9rem; }
 	.brand-name small { font-size: .62rem; }
+	.legal-page h1 { font-size: 1.6rem; }
 	h1 { font-size: 2.35rem; }
 }
 @media (prefers-reduced-motion: reduce) {

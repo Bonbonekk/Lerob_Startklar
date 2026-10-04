@@ -62,6 +62,21 @@ window.addEventListener('scroll', () => {
 	}
 }, { passive: true });
 
+const legalReturnStorageKey = 'lerob-startklar-legal-return';
+if (!document.querySelector('.legal-page')) {
+	try {
+		sessionStorage.removeItem(legalReturnStorageKey);
+	} catch {}
+}
+
+document.querySelectorAll('a[href="impressum.html"], a[href="datenschutz.html"]').forEach((link) => {
+	link.addEventListener('click', () => {
+		try {
+			sessionStorage.setItem(legalReturnStorageKey, window.location.href);
+		} catch {}
+	});
+});
+
 if (document.querySelector('.legal-page') && window.matchMedia('(max-width: 850px)').matches) {
 	let touchStart = null;
 
@@ -81,7 +96,15 @@ if (document.querySelector('.legal-page') && window.matchMedia('(max-width: 850p
 		if (deltaX < 80 || Math.abs(deltaX) < Math.abs(deltaY) * 1.3) return;
 
 		const referrer = document.referrer ? new URL(document.referrer) : null;
-		if (referrer?.origin === window.location.origin && window.history.length > 1) {
+		let hasInternalNavigation = false;
+		try {
+			hasInternalNavigation = Boolean(sessionStorage.getItem(legalReturnStorageKey));
+		} catch {}
+
+		if ((referrer?.origin === window.location.origin || hasInternalNavigation) && window.history.length > 1) {
+			try {
+				sessionStorage.removeItem(legalReturnStorageKey);
+			} catch {}
 			window.history.back();
 		} else {
 			window.location.assign('index.html');

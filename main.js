@@ -61,3 +61,30 @@ window.addEventListener('scroll', () => {
 		closeMobileNav();
 	}
 }, { passive: true });
+
+if (document.querySelector('.legal-page') && window.matchMedia('(max-width: 850px)').matches) {
+	let touchStart = null;
+
+	document.addEventListener('touchstart', (event) => {
+		const touch = event.changedTouches[0];
+		touchStart = { x: touch.clientX, y: touch.clientY };
+	}, { passive: true });
+
+	document.addEventListener('touchend', (event) => {
+		if (!touchStart) return;
+
+		const touch = event.changedTouches[0];
+		const deltaX = touch.clientX - touchStart.x;
+		const deltaY = touch.clientY - touchStart.y;
+		touchStart = null;
+
+		if (deltaX < 80 || Math.abs(deltaX) < Math.abs(deltaY) * 1.3) return;
+
+		const referrer = document.referrer ? new URL(document.referrer) : null;
+		if (referrer?.origin === window.location.origin && window.history.length > 1) {
+			window.history.back();
+		} else {
+			window.location.assign('index.html');
+		}
+	}, { passive: true });
+}
